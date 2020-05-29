@@ -46,5 +46,9 @@ RUN set -eux ;\
 RUN mkdir -p /home/yuqing/fastdfs
 WORKDIR /
 ADD entrypoint.sh ./
+COPY nginx.conf /usr/local/nginx/conf/nginx.conf
+RUN cp /usr/local/src/fastdfs-nginx-module/src/mod_fastdfs.conf /etc/fdfs/
+RUN cp /usr/local/src/fastdfs-5.11/conf/{http.conf,mime.types} /etc/fdfs/
+
 RUN chmod +x entrypoint.sh
 CMD ["./entrypoint.sh"]
